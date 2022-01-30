@@ -1,0 +1,40 @@
+header{
+  width: 100%;
+  height: 100px;
+  background-color: #ffffff;
+
+  h1{
+      font-family: omnes-cond, sans-serif;
+      font-weight: 100;
+      font-style: normal;
+  }
+}
+
+body{
+  width: 100%;
+  background-color: #f2f2f2;
+
+  .card_form{
+
+    .form_control{
+      width: 400px;
+      height: 50px;
+      border-radius: 5px #909090;
+      color:#909090;
+    }
+
+    .btn_register{
+      background-color: #214be0;
+      width: 400px;
+      height: 50px;
+      border-radius: 5px;
+    }
+
+  }
+}
+
+footer{
+  width: 100%;
+  height: 50px;
+  background-color: #ffffff;
+}

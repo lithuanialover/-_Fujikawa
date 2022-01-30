@@ -16,7 +16,7 @@ class CreateRestsTable extends Migration
         Schema::create('rests', function (Blueprint $table) {
             /*$table->bigIncrements('id');/*PRIMARY KEY*/
             $table->id(); /*追記*/
-            $table->foreignId(‘attendance_id’)->constrained(‘attendances’)->onDelete(‘cascade’);/*Foreign Key*/
+            $table->foreignId('attendance_id')->constrained('attendances')->onDelete('cascade');/*Foreign Key*/
             $table->time('start_time')->nullable()->change();
             $table->time('end_time')->nullable()->change();
 			$table->timestamp('created_at')->useCurrent()->nullable();
