@@ -1,0 +1,63 @@
+main {
+    width: 100%
+        /*左右中央寄せ*/
+}
+
+.card_form {
+    text-align: center;
+    /*左右中央寄せ*/
+    margin: 0 auto;
+    /*左右中央寄せ*/
+    margin-top: 5%;
+
+    .title-login {
+        font-weight: bold;
+        font-size: 24px;
+        padding-bottom: 10px;
+    }
+
+    .form-control {
+        width: 300px;
+        border-radius: 4px;
+        border-color: #909090;
+        padding: 10px;
+        background-color: #f2f2f2;
+        /*入力部分の背景色を指定する */
+    }
+
+    .md-form {
+        padding-bottom: 30px;
+    }
+
+    .btn-login {
+        width: 324px;
+        font-size: 17px;
+        color: #fff;
+        padding: 5px;
+        border-radius: 4px;
+        border-color: #214be0;
+        background-color: #214be0;/*背景色を指定する */
+        cursor:pointer; //指マークに変更
+    }
+
+    .title-register {
+        .msg-register {
+            color: #909090;
+            font-size: 15px;
+            font-weight: bold;
+            padding-bottom: 6px;
+        }
+
+        .link-register {
+            color: #214be0;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            /*リンクのアンダーラインを削除*/
+        }
+
+        a {
+            text-decoration: none;
+        }
+    }
+}

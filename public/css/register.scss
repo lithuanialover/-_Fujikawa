@@ -1,40 +1,58 @@
-header{
-  width: 100%;
-  height: 100px;
-  background-color: #ffffff;
-
-  h1{
-      font-family: omnes-cond, sans-serif;
-      font-weight: 100;
-      font-style: normal;
-  }
+main{
+  width:100% /*左右中央寄せ*/
 }
 
-body{
-  width: 100%;
-  background-color: #f2f2f2;
+.card_form{
+  text-align:center;/*左右中央寄せ*/
+  margin:0 auto;/*左右中央寄せ*/
+  margin-top: 5%;
 
-  .card_form{
+  .title-register{
+    font-weight: bold;
+    font-size: 24px;
+    padding-bottom: 10px;
+  }
 
-    .form_control{
-      width: 400px;
-      height: 50px;
-      border-radius: 5px #909090;
+  .form-control{
+    width: 300px;
+    border-radius: 4px;
+    border-color: #909090;
+    padding: 10px;
+    background-color: #f2f2f2;/*入力部分の背景色を指定する */
+  }
+
+  .md-form{
+    padding-bottom: 30px;
+  }
+
+  .btn-register{
+    width: 324px;
+    font-size: 17px;
+    color: #fff;
+    padding: 5px;
+    border-radius: 4px;
+    border-color: #214be0;
+    background-color: #214be0;/*背景色を指定する */
+    cursor:pointer; //指マークに変更
+  }
+
+  .title-login {
+    .msg-login{
       color:#909090;
+      font-size: 15px;
+      font-weight: bold;
+      padding-bottom: 6px;
     }
 
-    .btn_register{
-      background-color: #214be0;
-      width: 400px;
-      height: 50px;
-      border-radius: 5px;
+    .link-login{
+      color:#214be0;
+      font-size: 15px;
+      font-weight:600;
+      text-decoration: none; /*リンクのアンダーラインを削除*/
     }
 
+    a{
+      text-decoration: none;
+    }
   }
-}
-
-footer{
-  width: 100%;
-  height: 50px;
-  background-color: #ffffff;
 }
