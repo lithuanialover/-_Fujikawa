@@ -1,0 +1,98 @@
+header{
+
+  text-align: center;
+
+  a{
+    text-decoration: none;
+    color: rgb(1, 1, 17);
+  }
+
+  * {
+        margin: 0;
+        padding: 0;
+    }
+
+    li{
+      font-weight: bold;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    div {
+        padding: 0 30px;
+    }
+
+    .header__flex {
+        display: flex;
+        align-items: center;
+    }
+
+    .header__flex nav {
+        margin-left: auto;
+    }
+
+    .header__flex ul {
+        display: flex;
+    }
+
+    .header__flex ul li {
+        margin-left: 20px;
+    }
+}
+
+main{
+    margin: 0;
+
+    .content{
+        padding-left: 200px;
+        padding-right: 200px;
+    }
+
+    .user_name{
+        text-align: center;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    ul{
+        list-style: none;
+        /**黒点を消す*/
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    li{
+        background-color: #fff;
+        color: rgb(1, 1, 17);
+        font-size: 30px;
+        /* 文字サイズ */
+        margin: 20px;
+        width: calc(50% - 40px);
+        text-align: center;
+        cursor:pointer;
+    }
+
+    .btn_attendances {
+        font-size: 30px;
+        /* 文字サイズ */
+        width: 500px;
+        /* 幅指定 */
+        height: 200px;
+        /*高さ指定*/
+        text-align: center;
+        /* 文字中央揃え */
+        background-color: #fff;
+        /* 背景色指定 */
+        border-color: #fff;
+        cursor:pointer;
+    }
+
+}
+
