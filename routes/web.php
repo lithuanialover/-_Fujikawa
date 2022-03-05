@@ -11,15 +11,18 @@ Route::get('/register', [AuthController::class, 'getRegister']);
 /**ユーザー新規登録ページ表示*/
 Route::post('/register', [AuthController::class, 'postRegister']);
 /**ユーザー新規登録処理 */
+
 Route::get('/login', [AuthController::class, 'getLogin']);
 /**ログインページ表示*/
 Route::post('/login', [AuthController::class, 'postLogin']);
-/**ログインページ表示*/
-Route::get('/login', [AuthController::class, 'getLogin']);
-/**ログインページ表示*/
-Route::get('/', [AttendanceController::class, 'getIndex']);
-/**ログインページ表示*/
+/**ログインページ処理*/
 
+Route::get("/logout", [AuthController::class, "getLogout"])->name("logout");
+/**->middleware('auth'); */
+/**ログアウト処理*/
+
+Route::get('/', [AttendanceController::class, 'getIndex']);
+/**打刻ページ表示*/
 /**Route::group(['middleware' => 'auth'], function () {*/
     Route::get('/attendance/start', 'App\Http\Controllers\AttendanceController@startAttendance')->name('timestamp/start_time');
     Route::get('/attendance/end', 'App\Http\Controllers\AttendanceController@endAttendance')->name('timestamp/end_time');

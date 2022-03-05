@@ -1,4 +1,3 @@
-@charset "UTF-8";
 header {
   text-align: center;
 }
@@ -48,10 +47,6 @@ header .header__flex ul li {
   margin-left: 20px;
 }
 
-main {
-  margin: 0;
-}
-
 main .content {
   padding-left: 200px;
   padding-right: 200px;
@@ -65,9 +60,7 @@ main .user_name {
   font-weight: bold;
 }
 
-main ul {
-  list-style: none;
-  /**黒点を消す*/
+.btn-list {
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -76,31 +69,25 @@ main ul {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-}
-
-main li {
-  background-color: #fff;
-  color: #010111;
-  font-size: 30px;
-  /* 文字サイズ */
-  margin: 20px;
-  width: calc(50% - 40px);
   text-align: center;
-  cursor: pointer;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-main .btn_attendances {
-  font-size: 30px;
-  /* 文字サイズ */
-  width: 500px;
-  /* 幅指定 */
+.btn-list .timebtn {
+  margin: 25px;
+  width: 41%;
   height: 200px;
-  /*高さ指定*/
-  text-align: center;
-  /* 文字中央揃え */
-  background-color: #fff;
-  /* 背景色指定 */
-  border-color: #fff;
+  background: #fff;
+}
+
+.btn-list .btn {
+  font-weight: bold;
+  font-size: 25px;
+  width: 100%;
+  height: 200px;
+  line-height: 100px;
   cursor: pointer;
 }
 /*# sourceMappingURL=index.css.map */

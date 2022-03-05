@@ -43,6 +43,8 @@ class AuthController extends Controller
         return redirect('/register');
     }
 
+
+
     //
 
     //ログインページ
@@ -56,4 +58,14 @@ class AuthController extends Controller
         // ログイン後打刻ページへ
         return redirect('/index');
     }
+
+    //ログアウトページ
+    public function getLogout(Request $request)
+    {
+        auth()->logout();
+        return redirect()->route('login');
+    }
+
+
+    //名前表示
 }
