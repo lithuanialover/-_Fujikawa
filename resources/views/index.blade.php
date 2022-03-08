@@ -32,10 +32,46 @@
   </header>
 
   <main>
+<!--
+    @if()
+    <div class="flash_message">
+      {{ session('result')}}
+    </div>
+    @endif
+-->
     <div class="content">
       <p class="user_name">{{$user->name}}さんお疲れ様です!</p>
       <!--該当するデータの名前だけを表示させる、https://nebikatsu.com/7070.html/ -->
 
+      @if(!isset($is_attendance_start))
+      <a href="/attendance/start" class="attendance-btn">勤務開始</a>
+      @else
+      <p class="attendance-btn inactive">勤務開始</p>
+      @endif
+
+      @if(!isset($is_attendance_end))
+      <a href="/attendance/end" class="attendance-btn">勤務終了</a>
+      @else
+      <p class="attendance-btn inactive">勤務終了</p>
+      @endif
+
+      @if(isset($is_rest))
+      @if(!is_rest)
+      <a href="/break/start" class="attendance-btn">休憩開始</a>
+      @else
+      <p class="attendance-btn inactive">休憩開始</p>
+      @endif
+      @endif
+
+      @if(isset($is_rest))
+      @if(!is_rest)
+      <a href="/break/end" class="attendance-btn">休憩終了</a>
+      @else
+      <p class="attendance-btn inactive">休憩終了</p>
+      @endif
+      @endif
+
+      <!--毎回form使うのはダメ-
       <div class="button-form">
         <ul class="btn-list">
           <li class="timebtn" id="punchin">
@@ -67,6 +103,7 @@
             </form>
           </li>
         </ul>
+-->
 
   </main>
 
@@ -75,7 +112,6 @@
   </footer>
   <script>
     //ここにJavaScriptのコードを記述
-
   </script>
 
 </body>

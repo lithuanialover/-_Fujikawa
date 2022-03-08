@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash; //'password' => Hash::make($data['password']),　に関係している
 
 use App\Models\User;
-/**use Illuminate\Support\Facades\Auth;//追記⇒削除*/
+use Illuminate\Support\Facades\Auth;//追記⇒削除*/
 /**use App\User; 削除*/
 /**use App\Http\Controllers\Controller; 削除*/
 
@@ -52,20 +52,23 @@ class AuthController extends Controller
     {
         return view('login');/**ログインページ login.blade.phpを表示 */
     }
-    public function postLogin(Request $data)
-    /**ユーザー新規登録処理 */
+    public function postLogin(Request $request)
     {
         // ログイン後打刻ページへ
-        return redirect('/index');
+        if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])) {
+            return redirect('/');
+        } else {
+            return redirect('login')->with('result', 'メールアドレスまたはパスワードが間違っております');
+        }
     }
+
 
     //ログアウトページ
     public function getLogout(Request $request)
     {
         auth()->logout();
-        return redirect()->route('login');
+        /*これだと永遠リダイレクトエラー return redirect()->route('login');*/
+        return redirect('/login');/*これで解決*/
     }
 
-
-    //名前表示
 }
