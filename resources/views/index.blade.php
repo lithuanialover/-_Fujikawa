@@ -32,79 +32,41 @@
   </header>
 
   <main>
-<!--
-    @if()
-    <div class="flash_message">
-      {{ session('result')}}
-    </div>
-    @endif
--->
     <div class="content">
-      <p class="user_name">{{$user->name}}さんお疲れ様です!</p>
+      @if( Auth::check())
+      <p class="user_name">{{ Auth::user()->name }}さんお疲れ様です!</p>
+      @endif
       <!--該当するデータの名前だけを表示させる、https://nebikatsu.com/7070.html/ -->
+      <div class="btn-list">
+        @if(!isset($is_attendance_start))
+        <a href="/attendance/start" class="attendance-btn">勤務開始</a>
+        @else
+        <p class="attendance-btn inactive">勤務開始</p>
+        @endif
 
-      @if(!isset($is_attendance_start))
-      <a href="/attendance/start" class="attendance-btn">勤務開始</a>
-      @else
-      <p class="attendance-btn inactive">勤務開始</p>
-      @endif
+        @if(!isset($is_attendance_end))
+        <a href="/attendance/end" class="attendance-btn">勤務終了</a>
+        @else
+        <p class="attendance-btn inactive">勤務終了</p>
+        @endif
 
-      @if(!isset($is_attendance_end))
-      <a href="/attendance/end" class="attendance-btn">勤務終了</a>
-      @else
-      <p class="attendance-btn inactive">勤務終了</p>
-      @endif
+        @if(isset($is_rest))
+        @if(!is_rest)
+        <a href="/break/start" class="attendance-btn">休憩開始</a>
+        @else
+        <p class="attendance-btn inactive">休憩開始</p>
+        @endif
+        @endif
 
-      @if(isset($is_rest))
-      @if(!is_rest)
-      <a href="/break/start" class="attendance-btn">休憩開始</a>
-      @else
-      <p class="attendance-btn inactive">休憩開始</p>
-      @endif
-      @endif
-
-      @if(isset($is_rest))
-      @if(!is_rest)
-      <a href="/break/end" class="attendance-btn">休憩終了</a>
-      @else
-      <p class="attendance-btn inactive">休憩終了</p>
-      @endif
-      @endif
-
-      <!--毎回form使うのはダメ-
-      <div class="button-form">
-        <ul class="btn-list">
-          <li class="timebtn" id="punchin">
-            <form action="{{route('timestamp/start_time')}}" method="POST">
-              @csrf
-              @method('POST')
-              <button type="submit" id="btn_punchin" class="btn">勤務開始</button>
-            </form>
-          </li>
-          <li class="timebtn" id="punchout">
-            <form action="{{route('timestamp/end_time')}}" method="POST">
-              @csrf
-              @method('POST')
-              <button type="submit" id="btn_punchout" class="btn">勤務終了</button>
-            </form>
-          </li>
-          <li class="timebtn" id="rest_punchin">
-            <form action="{{route('timestamp/start_time')}}" method="POST">
-              @csrf
-              @method('POST')
-              <button type="submit" id="btn_rest_punchin" class="btn">休憩開始</button>
-            </form>
-          </li>
-          <li class="timebtn" id="rest_punchout">
-            <form action="{{route('timestamp/end_time')}}" method="POST">
-              @csrf
-              @method('POST')
-              <button type="submit" id="btn_rest_punchout" class="btn">休憩終了</button>
-            </form>
-          </li>
-        </ul>
--->
-
+        @if(isset($is_rest))
+        @if(!is_rest)
+        <a href="/break/end" class="attendance-btn">休憩終了</a>
+        @else
+        <p class="attendance-btn inactive">休憩終了</p>
+        @endif
+        @endif
+      </div>
+    </div>
   </main>
 
   <footer>

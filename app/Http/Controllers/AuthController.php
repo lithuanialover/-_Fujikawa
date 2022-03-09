@@ -12,9 +12,6 @@ use Illuminate\Support\Facades\Auth;//追記⇒削除*/
 
 class AuthController extends Controller
 {
-    public function __construct()
-    {
-    }
 
     /**
      * ユーザ登録画面の表示

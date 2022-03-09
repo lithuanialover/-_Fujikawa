@@ -17,7 +17,7 @@ class AttendanceController extends Controller
     {
         $attendance = Attendance::getAttendance();
 
-        if (empty($attendances)){
+        if (empty($attendance)){
             return view('index');
         }
 
@@ -43,12 +43,6 @@ class AttendanceController extends Controller
                 ]);
             }
         }
-        /*削除
-        $user = Auth::user();
-        $date = Carbon::today();
-        $timestamp = Attendance::where('user_id', $user)->latest()->first();
-        return view('index', ['user' => $user]);
-        */
     }
 
     //勤務処理
@@ -57,14 +51,16 @@ class AttendanceController extends Controller
         $id = Auth::id();
         /**Authは、Modelを指す */
         $dt = new Carbon();
-        $data = $dt->toDateString();
+        $date = $dt->toDateString();
         $time = $dt->toTimeString();
 
         Attendance::create([
             'user_id' => $id,
-            'data' => $data,
+            'date' => $date,
             'start_time' => $time,
-            /**'user_id,'data','start_time'は、attendancesテーブルのカラム名*/
+            /**
+             * ①Attendanceは、Model
+             * ②'user_id,'data','start_time'は、attendancesテーブルのカラム名*/
         ]);
 
         return redirect('/')->with('result', '勤務開始しました');
@@ -75,15 +71,15 @@ class AttendanceController extends Controller
         $id = Auth::id();
 
         $dt = new Carbon();
-        $data = $dt->toDateString();
+        $date = $dt->toDateString();
         $time = $dt->toTimeString();
 
-        Attendance::where('user_id', $id)->where('data', $data)->update(['end_time' => $time]);
+        Attendance::where('user_id', $id)->where('data', $date)->update(['end_time' => $time]);
 
         return redirect('/')->with('result', '勤務終了しました');
     }
 
-    /*ページネーション
+    //ページネーション
     public function getAttendance(Request $request)
     {
         $num = (int)$request->num;
@@ -102,5 +98,5 @@ class AttendanceController extends Controller
         //下記は自分で記入
         return view('attendance', ['attendances' => $attendances]);
     }
-    */
+
 }

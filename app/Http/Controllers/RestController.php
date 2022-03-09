@@ -2,35 +2,46 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Carbon\Carbon;
+use App\Models\Rest;
+use App\Models\Attendance;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class RestController extends Controller
 {
-    public function getIndex()
-    /*打刻ページ表示*/
-    {
-        return view('index');
-        /**打刻ページ index.blade.phpを表示 */
-    }
-
+    //休憩処理
     public function startRest()
-    /*休憩開始処理*/
     {
-        return view('index');
-        /**打刻ページ index.blade.phpを表示 */
+        $id = AUth::id();
+        /**Authは、Modelを指す */
+        $dt = new Carbon();
+        //$date = $dt->toDateString();
+        $time = $dt->toTimeString();
+
+        Rest::create([
+            'attendance_id' => $id,
+            //'date' => $date,
+            'start_time' => $time
+            /**
+             * ①Attendanceは、Model
+             * ②'user_id,'data','start_time'は、attendancesテーブルのカラム名*/
+        ]);
+
+        return redirect('/')->with('result', '休憩開始しました');
     }
 
     public function endRest()
-    /*休憩終了処理*/
     {
-        return view('index');
-        /**打刻ページ index.blade.phpを表示 */
-    }
+        $id = Auth::id();
 
-    public function getAttendance()
-    /*ページネーション*/
-    {
-        return view('attendance');
-        /**日付別勤怠ページ attendance.blade.phpを表示 */
-    }    //
+        $dt = new Carbon();
+        //$date = $dt->toDateString();
+        $time = $dt->toTimeString();
+
+        Rest::where('attendance_id', $id)->update(['end_time' => $time]);
+
+        return redirect('/')->with('result', '休憩終了しました');
+    }
 }

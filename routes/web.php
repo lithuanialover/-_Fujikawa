@@ -12,7 +12,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/logout', [AuthController::class, 'getLogout']);
 
     //打刻ページ表示
-    Route::get('/',[AuthController::class, 'getIndex']);
+    Route::get('/',[AttendanceController::class, 'getIndex']);
 
     //勤務処理
     Route::get('/attendance/start', [AttendanceController::class, 'startAttendance']);
@@ -32,7 +32,7 @@ Route::post('/register', [AuthController::class, 'postRegister']);
 
 //ログイン
 Route::get('/login', [AuthController::class, 'getLogin'])->name('login');
-Route::get('/login', [AuthController::class, 'postLogin']);
+Route::post('/login', [AuthController::class, 'postLogin']);
 
 
 
