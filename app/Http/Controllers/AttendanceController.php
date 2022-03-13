@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Rest;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,13 @@ class AttendanceController extends Controller
     //打刻ページ表示、ボタンの活性＆非活性の設定
     public function getIndex()
     {
+        /*
         $attendance = Attendance::getAttendance();
+        //getAttendanceにするとerror（Bad method: getAttendance() doesn't exist）がでる
+        //$attendance = Attendance::all();
+
+        //Property [rests] does not exist on this collection instance.
+        //$rest = Rest::all();
 
         if (empty($attendance)){
             return view('index');
@@ -43,6 +50,10 @@ class AttendanceController extends Controller
                 ]);
             }
         }
+        */
+
+        //上記を削除し、代わりにview('index')を代入。getAttendanceのerrorを解決してから下記を削除する
+        return view('index');
     }
 
     //勤務処理
@@ -58,6 +69,8 @@ class AttendanceController extends Controller
             'user_id' => $id,
             'date' => $date,
             'start_time' => $time,
+            //下記追記 3/13/2022 ⇒error解決
+            'end_time' => $time,
             /**
              * ①Attendanceは、Model
              * ②'user_id,'data','start_time'は、attendancesテーブルのカラム名*/

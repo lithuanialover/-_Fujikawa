@@ -42,5 +42,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    //下記追記 3/4/2022
+    //3/13/2022 追記
+    //public function attendances()
+    //{
+    //    return $this->hasMany(Attendance::class, 'user_id');
+    //}
 }

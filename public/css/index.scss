@@ -58,6 +58,89 @@ main{
     }
 }
 
+.btn-list{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      /* 以降はレイアウトとは無関係です */
+      background:#f2f2f2;
+}
+
+.btn-item{
+      flex-basis:calc((100% - 40px) / 2);
+      max-width:calc((100% - 40px) / 2);
+      height:200px;
+      margin-top:40px;
+      //text-align:center;
+      background: #fff;
+}
+
+.btn-item:nth-of-type(1),
+.btn-item:nth-of-type(2) {
+    margin-top: 0;
+}
+
+.attendance-btn {
+    text-decoration: none;
+    font-size: 25px;
+    //vertical-align: middle;
+    //text-align:center;
+    //justify-content: center;
+    //display:block;
+    //margin-left: auto;
+    //margin-right: auto;
+}
+
+.inactive{
+    color:rgba(80, 80, 83, 0.972)
+}
+
+a{
+    //display: block; //枠内すべてが反応する
+    color: rgb(1, 1, 17);
+    font-weight: bold;
+    text-align:center;
+    //vertical-align: middle;
+}
+
+
+/*.btn-list{
+    background-color: #eee;
+    // 背景色指定
+    height: 200px;
+    // 高さ指定
+    display: flex;
+    // フレックスボックスにする
+    flex-wrap: wrap;
+    // 折り返し指定
+    //align-content:stretch;
+    text-align: center;
+    justify-content:space-between;
+    margin: 0px;
+    padding: 0;
+}
+
+.btn-item {
+    padding: 10px;
+    color: #fff;
+    // 文字色
+    //margin: 10px;
+    // 外側の余白
+    border-radius: 5px;
+    // 角丸指定
+    font-size: 30px;
+    // 文字サイズ
+    width: 41%;
+    // 幅指定
+    text-align: center;
+    // 文字中央揃え
+    justify-content: center;
+    cursor: pointer;
+    margin-top:20px;
+}
+*/
+
+/*削除
 .btn-list {
     list-style-type: none;
     padding: 0;
@@ -88,10 +171,4 @@ main{
         line-height: 100px;
     }
 }
-
-    /*.timebtn {
-        margin: 25px;
-        width: 41%;
-        height: 200px;
-        background: #fff;
-    }*/
+*/

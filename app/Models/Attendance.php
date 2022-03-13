@@ -14,8 +14,7 @@ class Attendance extends Model
 
     protected $fillable = ['user_id', 'start_time', 'end_time', 'date'];
 
-
-    public function rests()
+    public function rest()
     {
         return $this->hasMany(Rest::class);
     }
@@ -25,4 +24,5 @@ class Attendance extends Model
     {
         return $this->belongsTo(User::class);
     }
+
 }

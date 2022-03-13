@@ -1,3 +1,4 @@
+@charset "UTF-8";
 header {
   text-align: center;
 }
@@ -61,33 +62,112 @@ main .user_name {
 }
 
 .btn-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  text-align: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  /* 以降はレイアウトとは無関係です */
+  background: #f2f2f2;
 }
 
-.btn-list .timebtn {
-  margin: 25px;
-  width: 41%;
+.btn-item {
+  -ms-flex-preferred-size: calc((100% - 40px) / 2);
+      flex-basis: calc((100% - 40px) / 2);
+  max-width: calc((100% - 40px) / 2);
   height: 200px;
+  margin-top: 40px;
   background: #fff;
 }
 
-.btn-list .btn {
-  font-weight: bold;
-  font-size: 25px;
-  width: 100%;
-  height: 200px;
-  line-height: 100px;
-  cursor: pointer;
+.btn-item:nth-of-type(1),
+.btn-item:nth-of-type(2) {
+  margin-top: 0;
 }
+
+.attendance-btn {
+  text-decoration: none;
+  font-size: 25px;
+}
+
+.inactive {
+  color: rgba(80, 80, 83, 0.972);
+}
+
+a {
+  color: #010111;
+  font-weight: bold;
+  text-align: center;
+}
+
+/*.btn-list{
+    background-color: #eee;
+    // 背景色指定
+    height: 200px;
+    // 高さ指定
+    display: flex;
+    // フレックスボックスにする
+    flex-wrap: wrap;
+    // 折り返し指定
+    //align-content:stretch;
+    text-align: center;
+    justify-content:space-between;
+    margin: 0px;
+    padding: 0;
+}
+
+.btn-item {
+    padding: 10px;
+    color: #fff;
+    // 文字色
+    //margin: 10px;
+    // 外側の余白
+    border-radius: 5px;
+    // 角丸指定
+    font-size: 30px;
+    // 文字サイズ
+    width: 41%;
+    // 幅指定
+    text-align: center;
+    // 文字中央揃え
+    justify-content: center;
+    cursor: pointer;
+    margin-top:20px;
+}
+*/
+/*削除
+.btn-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+
+    .attendance-btn {
+        font-weight: bold;
+        font-size: 25px;
+        margin: 25px;
+        background: #fff;
+        width: 100%;
+        height: 200px;
+        line-height: 100px;
+        cursor: pointer;
+    }
+
+    .inactive{
+        font-weight: bold;
+        font-size: 25px;
+        margin: 25px;
+        background: #e5e5e5;
+        width: 100%;
+        height: 200px;
+        line-height: 100px;
+    }
+}
+*/
 /*# sourceMappingURL=index.css.map */
