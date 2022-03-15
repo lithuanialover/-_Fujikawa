@@ -17,12 +17,12 @@ class RestController extends Controller
         $id = AUth::id();
         /**Authは、Modelを指す */
         $dt = new Carbon();
-        //$date = $dt->toDateString();
+        $date = $dt->toDateString(); //追記 3/13/2022
         $time = $dt->toTimeString();
 
         Rest::create([
             'attendance_id' => $id,
-            //'date' => $date,
+            'date' => $date,//追記 3/13/2022
             'start_time' => $time
             /**
              * ①Attendanceは、Model
@@ -37,7 +37,7 @@ class RestController extends Controller
         $id = Auth::id();
 
         $dt = new Carbon();
-        //$date = $dt->toDateString();
+        $date = $dt->toDateString(); //追記 3/13/2022
         $time = $dt->toTimeString();
 
         Rest::where('attendance_id', $id)->update(['end_time' => $time]);

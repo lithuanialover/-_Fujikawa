@@ -47,63 +47,60 @@ main{
     .content{
         padding-left: 200px;
         padding-right: 200px;
+
+            .user_name {
+                text-align: center;
+                padding-top: 50px;
+                padding-bottom: 50px;
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+            .btn-list {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                /* 以降はレイアウトとは無関係です */
+                background: #f2f2f2;
+
+                .btn-item {
+                    flex-basis: calc((100% - 40px) / 2);
+                    max-width: calc((100% - 40px) / 2);
+                    height: 200px;
+                    margin-top: 40px;
+                    //text-align:center;
+                    background: #fff;
+                }
+
+                .btn-item:nth-of-type(1),
+                .btn-item:nth-of-type(2) {
+                    margin-top: 0;
+                }
+
+                .attendance-btn {
+                    text-decoration: none;
+                    font-size: 25px;
+                    color: rgb(1, 1, 17);
+                    font-weight: bold;
+                    //text-align:center;
+                    display: block; //全面クリックするために必要なコード
+                    width: 100%; //全面クリックするために必要なコード
+                    height: 100%; //全面クリックするために必要なコード
+                    display: flex; //文字を上下左右中央に配置
+                    justify-content: center; //文字を上下左右中央に配置　/*左右中央揃え*/
+                    align-items: center; //文字を上下左右中央に配置/*上下中央揃え*/
+                }
+
+                .inactive {
+                    color: rgba(80, 80, 83, 0.972)
+                }
+
+            }
     }
-
-    .user_name{
-        text-align: center;
-        padding-top: 50px;
-        padding-bottom: 50px;
-        font-size: 24px;
-        font-weight: bold;
-    }
-}
-
-.btn-list{
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:space-between;
-      /* 以降はレイアウトとは無関係です */
-      background:#f2f2f2;
-}
-
-.btn-item{
-      flex-basis:calc((100% - 40px) / 2);
-      max-width:calc((100% - 40px) / 2);
-      height:200px;
-      margin-top:40px;
-      //text-align:center;
-      background: #fff;
-}
-
-.btn-item:nth-of-type(1),
-.btn-item:nth-of-type(2) {
-    margin-top: 0;
-}
-
-.attendance-btn {
-    text-decoration: none;
-    font-size: 25px;
-    //vertical-align: middle;
-    //text-align:center;
-    //justify-content: center;
-    //display:block;
-    //margin-left: auto;
-    //margin-right: auto;
-}
-
-.inactive{
-    color:rgba(80, 80, 83, 0.972)
-}
-
-a{
-    //display: block; //枠内すべてが反応する
-    color: rgb(1, 1, 17);
-    font-weight: bold;
-    text-align:center;
-    //vertical-align: middle;
 }
 
 
+//-------------------------下記削除---------------------------
 /*.btn-list{
     background-color: #eee;
     // 背景色指定

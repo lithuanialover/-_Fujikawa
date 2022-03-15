@@ -16,8 +16,11 @@ class AttendanceController extends Controller
     //打刻ページ表示、ボタンの活性＆非活性の設定
     public function getIndex()
     {
-        /*
+
+        /* "【ERROR:expexted type 'object'. found 'void'】"
+        下記のコードを消すとerrorが消える*/
         $attendance = Attendance::getAttendance();
+
         //getAttendanceにするとerror（Bad method: getAttendance() doesn't exist）がでる
         //$attendance = Attendance::all();
 
@@ -50,7 +53,7 @@ class AttendanceController extends Controller
                 ]);
             }
         }
-        */
+
 
         //上記を削除し、代わりにview('index')を代入。getAttendanceのerrorを解決してから下記を削除する
         return view('index');
@@ -73,7 +76,7 @@ class AttendanceController extends Controller
             'end_time' => $time,
             /**
              * ①Attendanceは、Model
-             * ②'user_id,'data','start_time'は、attendancesテーブルのカラム名*/
+             * ②'user_id,'date','start_time'は、attendancesテーブルのカラム名*/
         ]);
 
         return redirect('/')->with('result', '勤務開始しました');
@@ -87,7 +90,7 @@ class AttendanceController extends Controller
         $date = $dt->toDateString();
         $time = $dt->toTimeString();
 
-        Attendance::where('user_id', $id)->where('data', $date)->update(['end_time' => $time]);
+        Attendance::where('user_id', $id)->where('date', $date)->update(['end_time' => $time]);
 
         return redirect('/')->with('result', '勤務終了しました');
     }

@@ -53,7 +53,7 @@ main .content {
   padding-right: 200px;
 }
 
-main .user_name {
+main .content .user_name {
   text-align: center;
   padding-top: 50px;
   padding-bottom: 50px;
@@ -61,7 +61,7 @@ main .user_name {
   font-weight: bold;
 }
 
-.btn-list {
+main .content .btn-list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -74,7 +74,7 @@ main .user_name {
   background: #f2f2f2;
 }
 
-.btn-item {
+main .content .btn-list .btn-item {
   -ms-flex-preferred-size: calc((100% - 40px) / 2);
       flex-basis: calc((100% - 40px) / 2);
   max-width: calc((100% - 40px) / 2);
@@ -83,24 +83,32 @@ main .user_name {
   background: #fff;
 }
 
-.btn-item:nth-of-type(1),
-.btn-item:nth-of-type(2) {
+main .content .btn-list .btn-item:nth-of-type(1),
+main .content .btn-list .btn-item:nth-of-type(2) {
   margin-top: 0;
 }
 
-.attendance-btn {
+main .content .btn-list .attendance-btn {
   text-decoration: none;
   font-size: 25px;
-}
-
-.inactive {
-  color: rgba(80, 80, 83, 0.972);
-}
-
-a {
   color: #010111;
   font-weight: bold;
-  text-align: center;
+  display: block;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .content .btn-list .inactive {
+  color: rgba(80, 80, 83, 0.972);
 }
 
 /*.btn-list{

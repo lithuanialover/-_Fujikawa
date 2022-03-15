@@ -16,3 +16,13 @@ mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'pub
     require('tailwindcss'),
     require('autoprefixer'),
 ]);
+
+//3/14/2022 BrowserSync稼働用に追記
+mix.browserSync({
+    proxy: {
+        target: "http://127.0.0.1:8000",
+    },
+    files: [
+        'resources/views/**/*.blade.php',
+    ],
+});
