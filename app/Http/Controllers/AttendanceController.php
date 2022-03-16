@@ -19,13 +19,21 @@ class AttendanceController extends Controller
 
         /* "【ERROR:expexted type 'object'. found 'void'】"
         下記のコードを消すとerrorが消える*/
-        $attendance = Attendance::getAttendance();
 
-        //getAttendanceにするとerror（Bad method: getAttendance() doesn't exist）がでる
-        //$attendance = Attendance::all();
+        /*【ERROR:Non-static method getAttendance should not be called statically】
+        <下記削除>
+        ①Attendance.phpの「return Attendance::getAttendance();」
+        ②AttendanceController.phpの「$attendance = Attendance::getAttendance();」
+        <下記追記>
+        ①Attendance.php「return $attendance;」
+        ②AttendanceController.php「$data = new Attendance();
+        $attendance = $data->getAttendance;」
+        【結果】
+        error文面は消えた
+        */
+        $data = new Attendance();
+        $attendance = $data->getAttendance;
 
-        //Property [rests] does not exist on this collection instance.
-        //$rest = Rest::all();
 
         if (empty($attendance)){
             return view('index');
@@ -96,8 +104,9 @@ class AttendanceController extends Controller
     }
 
     //ページネーション
-    public function getAttendance(Request $request)
+    public static function getAttendance(Request $request)
     {
+
         $num = (int)$request->num;
         $dt = new Carbon();
         if ($num == 0){

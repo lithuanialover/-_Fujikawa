@@ -6,6 +6,8 @@ use App\Models\user;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use Carbon\Carbon;// 3/16/2022追記
+
 class Attendance extends Model
 {
     use HasFactory;
@@ -36,12 +38,26 @@ class Attendance extends Model
     }
     */
 
-    public static function getAttendance(){
-        //Attendance::getAttendance();
-        /* "【ERROR:expexted type 'object'. found 'void'】"
-        //下記コードを記入したら、が消えたが、【ERROR:This page isn’t working127.0.0.1 is currently unable to handle this request.
-HTTP ERROR 500】がおきた*/
-        //return Attendance::getAttendance();
+    public function getAttendance(){
+
+        // 処理を書かないとエラーがでる
+        $is_attendance_start = Attendance::where('start_time');
+        $attendance = $is_attendance_start;
+
+        return $attendance;
+        // return Attendance::getAttendance();
     }
+
+/*
+    public function getRest(){
+        $sumRestTime = 0;
+        $getRests = $this->rests;
+        foreach($getRests as $getRest){
+            $sumRestTime += $getRest->get_rest_time();
+        }
+
+        return gmdate("H:i:s", $sumRestTime);
+    }
+    */
 
 }
