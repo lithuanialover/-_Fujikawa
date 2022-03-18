@@ -31,9 +31,26 @@ class AttendanceController extends Controller
         【結果】
         error文面は消えた
         */
+
+        /*削除　3/18/2022
         $data = new Attendance();
         $attendance = $data->getAttendance;
+        */
 
+        //追記　自分で記入
+
+
+        // 追記　2022/3/18 https://github.com/FujiiMarie/Atte/blob/master/app/Http/Controllers/AttendanceController.php
+        $is_attendance_start = false; //falseの時ボタンを押せる
+        $is_attendance_end = false;
+        $is_rest = false;
+        $is_rest = false;
+
+        $user_id = Auth::id();
+        $today = Carbon::today()->format('Y-m-d');
+        $now = Carbon::now()->format('H:i:s');
+        $attendance = Attendance::where('user_id', $user_id)->where('start_time', $today)->first();
+        //ここまで
 
         if (empty($attendance)){
             return view('index');

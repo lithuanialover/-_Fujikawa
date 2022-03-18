@@ -38,6 +38,7 @@ class Attendance extends Model
     }
     */
 
+/*削除 3/18/2022
     public function getAttendance(){
 
         // 処理を書かないとエラーがでる
@@ -45,8 +46,9 @@ class Attendance extends Model
         $attendance = $is_attendance_start;
 
         return $attendance;
-        // return Attendance::getAttendance();
+        //return Attendance::getAttendance();
     }
+*/
 
 /*
     public function getRest(){
