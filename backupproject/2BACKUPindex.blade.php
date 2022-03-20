@@ -14,8 +14,6 @@
   <!--Font-->
   <link rel="stylesheet" href="https://use.typekit.net/ght7zzs.css">
   <!--ロゴ-->
-  <!-- Scripts -->
-  <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
 <body>

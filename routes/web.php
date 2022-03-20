@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/break/end', [RestController::class, 'endRest']);
 
     //ページネーション
-    Route::get('/attendance/{num}', [AttendanceController::class, 'getAttendance']);
+    // Route::get('/attendance/{num}', [AttendanceController::class, 'getAttendance']);
 });
 
 //新規会員登録

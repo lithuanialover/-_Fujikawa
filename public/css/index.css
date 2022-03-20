@@ -61,6 +61,15 @@ main .content .user_name {
   font-weight: bold;
 }
 
+main .content .content_title {
+  text-align: center;
+  background-color: #E4B7BA;
+  color: #010111;
+  font-weight: bold;
+  margin-top: 20px;
+  padding: 10px;
+}
+
 main .content .btn-list {
   display: -webkit-box;
   display: -ms-flexbox;

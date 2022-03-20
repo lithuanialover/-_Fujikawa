@@ -13,132 +13,104 @@ use Illuminate\Support\Facades\Auth;
 
 class AttendanceController extends Controller
 {
-    //打刻ページ表示、ボタンの活性＆非活性の設定
-    public function getIndex()
+
+    public function getIndex(Request $request)
     {
-
-        /* "【ERROR:expexted type 'object'. found 'void'】"
-        下記のコードを消すとerrorが消える*/
-
-        /*【ERROR:Non-static method getAttendance should not be called statically】
-        <下記削除>
-        ①Attendance.phpの「return Attendance::getAttendance();」
-        ②AttendanceController.phpの「$attendance = Attendance::getAttendance();」
-        <下記追記>
-        ①Attendance.php「return $attendance;」
-        ②AttendanceController.php「$data = new Attendance();
-        $attendance = $data->getAttendance;」
-        【結果】
-        error文面は消えた
-        */
-
-        /*削除　3/18/2022
-        $data = new Attendance();
-        $attendance = $data->getAttendance;
-        */
-
-        //追記　自分で記入
-
-
-        // 追記　2022/3/18 https://github.com/FujiiMarie/Atte/blob/master/app/Http/Controllers/AttendanceController.php
-        $is_attendance_start = false; //falseの時ボタンを押せる
-        $is_attendance_end = false;
-        $is_rest = false;
-        $is_rest = false;
+        $btn_start_attendance = false; //falseの時ボタンを押せる
+        $btn_end_attendance = false;
+        $btn_start_rest = false;
+        $btn_end_rest = false;
 
         $user_id = Auth::id();
         $today = Carbon::today()->format('Y-m-d');
         $now = Carbon::now()->format('H:i:s');
-        $attendance = Attendance::where('user_id', $user_id)->where('start_time', $today)->first();
-        //ここまで
+        $attendance = Attendance::where('user_id', $user_id)->where('date', $today)->first();
+        //work_dayをdateに変更（attendanceテーブルのカラムに合わせて）
 
-        if (empty($attendance)){
-            return view('index');
-        }
+        if ($attendance != null) { //勤務データがある場合
 
-        $rest = $attendance->rests->whereNull('end_time')->first();
+            if ($attendance['end_time'] != '00:00:00') { //終了時間が入っている場合：全てのボタンが押せない
 
-        if ($attendance->end_time) {
-            return view('index')->with([
-                'is_attendance_start' => true,
-                'is_attendance_end' => true,
-            ]);
-        }
+            } else { //終了時間が入っていない場合=終了時間が'00:00:00'の場合
 
-        if ($attendance->start_time){
-            if (isset($rest)){
-                return view('index')->with([
-                    'is_rest' => true,
-                    'is_attendance_start' => true,
-                ]);
-            }else{
-                return view('index')->with([
-                    'is_rest' => false,
-                    'is_attendance_start' => true,
-                ]);
+                $rest = Rest::where('user_id', $user_id)->where('date', $today)->orderBy('start_rest', 'desc')->first();
+
+                if ($rest != null) { //休憩中データがある場合
+
+                    if ($rest['end_rest'] != '00:00:00') { //休憩終了時間が入っている場合：勤務終了と休憩開始ボタンを押せる
+                        $btn_end_attendance = true;
+                        $btn_start_rest = true;
+                    } else { //休憩終了時間が入っていない場合：休憩終了ボタンを押せる
+                        $btn_end_rest = true;
+                    }
+                } else { //休憩中データがない場合(休憩していない)：勤務終了と休憩開始ボタンが押せる
+                    $btn_end_attendance = true;
+                    $btn_start_rest = true;
+                }
             }
+        } else { //勤務データがない場合：勤務開始ボタンのみ押せる
+            $btn_start_attendance = true;
         }
 
+        $btn_display = [
+            'btn_start_attendance' => $btn_start_attendance,
+            'btn_end_attendance' => $btn_end_attendance,
+            'btn_start_rest' => $btn_start_rest,
+            'btn_end_rest' => $btn_end_rest,
+        ];
 
-        //上記を削除し、代わりにview('index')を代入。getAttendanceのerrorを解決してから下記を削除する
-        return view('index');
+        return view(
+            'index',
+            ['btn_display' => $btn_display],
+            ['btn_start_attendance' => $btn_start_attendance],
+            ['btn_end_attendance' => $btn_end_attendance],
+            ['btn_start_rest' => $btn_start_rest],
+            ['btn_end_rest' => $btn_end_rest]
+        );
     }
 
-    //勤務処理
-    public function startAttendance()
-    {
-        $id = Auth::id();
-        /**Authは、Modelを指す */
-        $dt = new Carbon();
-        $date = $dt->toDateString();
-        $time = $dt->toTimeString();
+    public function startAttendance(Request $request)
+    { //勤務開始
+        $user_id = Auth::id();
+        $today = Carbon::today()->format('Y-m-d');
+        $start_time = Attendance::where('user_id', $user_id)->where('date', $today)->value('start_time');
 
-        Attendance::create([
-            'user_id' => $id,
-            'date' => $date,
-            'start_time' => $time,
-            //下記追記 3/13/2022 ⇒error解決
-            'end_time' => $time,
-            /**
-             * ①Attendanceは、Model
-             * ②'user_id,'date','start_time'は、attendancesテーブルのカラム名*/
-        ]);
-
-        return redirect('/')->with('result', '勤務開始しました');
-    }
-
-    public function endAttendance()
-    {
-        $id = Auth::id();
-
-        $dt = new Carbon();
-        $date = $dt->toDateString();
-        $time = $dt->toTimeString();
-
-        Attendance::where('user_id', $id)->where('date', $date)->update(['end_time' => $time]);
-
-        return redirect('/')->with('result', '勤務終了しました');
-    }
-
-    //ページネーション
-    public static function getAttendance(Request $request)
-    {
-
-        $num = (int)$request->num;
-        $dt = new Carbon();
-        if ($num == 0){
-            $date = $dt;
-        }elseif ($num > 0){
-            $date = $dt->addDays($num);
-        }else{
-            $date = $dt->subDays(-$num);
+        if ($start_time == null) {
+            Attendance::create([
+                'user_id' => Auth::id(),
+                'date' => Carbon::today()->format('Y-m-d'),
+                'start_time' => Carbon::now()->format('H:i:s')
+            ]);
+            return redirect('/')->with('result', '勤務開始を記録しました');
+        } else {
+            return redirect('/')->with('result', '既に勤務開始済みです');
         }
-        $fixed_date = $date->toDateString();
+    }
 
-        $attendances = Attendance::where('date', $fixed_date)->paginate(5);
+    public function endAttendance(Request $request)
+    {
+        $user_id = Auth::id();
+        $today = Carbon::today()->format('Y-m-d');
+        $attendance_val = Attendance::where('user_id', $user_id)->where('date', $today)->where('end_time', 0)->first();
 
-        //下記は自分で記入
-        return view('attendance', ['attendances' => $attendances]);
+        if ($attendance_val == null) {
+
+            return redirect('/')->with('result', '既に勤務終了済みです');
+        } else {
+            $start_time = new Carbon($attendance_val->work_day . ' ' . $attendance_val->start_time);
+            $end_time = Carbon::now()->format('H:i:s');
+            // 2021/3/19削除　$total_work_time = $start_time->diffInSeconds($end_time);
+
+            // Log::alert('$total_work_timeの出力調査', ['$total_work_time' => $total_work_time]);
+
+            Attendance::where('user_id', $user_id)->where('work_day', $today)->where('end_time', 0)->update([
+                'user_id' => Auth::id(),
+                'end_time' => Carbon::now()->format('H:i:s'),
+                // 2021/3/19削除'total_work_time' => $total_work_time
+            ]);
+
+            return redirect('/')->with('result', '勤務終了を記録しました');
+        }
     }
 
 }
