@@ -8,7 +8,8 @@
   <title>勤怠管理</title>
   <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
   <link rel="stylesheet" href="{{ asset('css/attendance.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/template.css') }}"><!--header/body/footerのcss-->
+  <link rel="stylesheet" href="{{ asset('css/template.css') }}">
+  <!--header/body/footerのcss-->
 </head>
 
 <body>
@@ -16,6 +17,22 @@
 
   </header>
 
+  <main>
+    <table>
+      <tr>
+        <th>Data</th>
+      </tr>
+      @foreach ($items as $item)
+      <tr>
+        <td>
+          {{$item->getDetail()}}
+        </td>
+      </tr>
+      @endforeach
+    </table>
+    {{ $items->links() }}
+
+  </main>
   <footer>
 
   </footer>

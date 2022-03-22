@@ -25,7 +25,7 @@
       <nav>
         <ul>
           <li><a href="/">ホーム</a></li>
-          <li><a href="/attendance/{num}">日付一覧</a></li>
+          <li><a href="/attendance">日付一覧</a></li>
           <li>
             <a href="/logout">ログアウト</a>
           </li>
@@ -46,43 +46,22 @@
       <!-- 【最新】追記 2022/3/19 -->
       <div class="btn-list">
         <div class="btn-item">
-          @if ($btn_display['btn_start_attendance'])
-          <a href="/attendance/start" class="attendance-btn">
+          <a href="/attendance/start" class="attendance-btn" <?php if ($btn_display['btn_start_attendance'] == false) { ?> disabled <?php } ?>>
             勤務開始</a>
-          @else
-          <p href="/attendance/start" class="attendance-btn inactive">
-            勤務開始</p>
-          @endif
         </div>
         <div class="btn-item">
-          @if ($btn_display['btn_end_attendance'])
-          <a href="/attendance/end" class="attendance-btn">
+          <a href="/attendance/end" class="attendance-btn" <?php if ($btn_display['btn_end_attendance'] == false) { ?> disabled <?php } ?>>
             勤務終了</a>
-          @else
-          <p href="/attendance/end" class="attendance-btn inactive">
-            勤務終了</p>
-          @endif
         </div>
         <div class="btn-item">
-          @if ($btn_display['btn_start_rest'])
-          <a href="/break/start" class="attendance-btn">
+          <a href="/break/start" class="attendance-btn" <?php if ($btn_display['btn_start_rest'] == false) { ?> disabled <?php } ?>>
             休憩開始</a>
-          @else
-          <p href="/break/start" class="attendance-btn inactive">
-            休憩開始</p>
-          @endif
         </div>
         <div class="btn-item">
-          @if ($btn_display['btn_end_rest'])
-          <a href="/break/end" class="attendance-btn">
+          <a href="/break/end" class="attendance-btn" <?php if ($btn_display['btn_end_rest'] == false) { ?> disabled <?php } ?>>
             休憩終了</a>
-          @else
-          <p href="/break/end" class="attendance-btn inactive">
-            休憩終了</p>
-          @endif
         </div>
       </div>
-    </div>
     </div>
   </main>
 
