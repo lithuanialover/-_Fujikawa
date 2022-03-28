@@ -19,11 +19,11 @@ Route::middleware('auth')->group(function(){
     Route::get('/attendance/end', [AttendanceController::class, 'endAttendance']);
 
     //休憩処理
-    Route::get('/break/start', [AttendanceController::class, 'startRest']);
-    Route::get('/break/end', [AttendanceController::class, 'endRest']);
+    Route::get('/break/start', [RestController::class, 'startRest']);
+    Route::get('/break/end', [RestController::class, 'endRest']);
 
     //ページネーション
-     Route::get('/attendance', [AttendanceController::class, 'getAttendance']);
+     Route::get('/attendance/{num}', [AttendanceController::class, 'getAttendance']);
 });
 
 //新規会員登録
