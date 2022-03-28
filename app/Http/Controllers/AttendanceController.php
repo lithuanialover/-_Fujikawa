@@ -95,7 +95,7 @@ class AttendanceController extends Controller
         }
         $fixed_date = $date->toDateString();
 
-        $attendances = Attendance::where('date', $fixed_date)->paginate(5);
+        $attendances = Attendance::where('date', $fixed_date)->paginate(5); //paginationについて
 
         $adjustAttendances = Attendance::adjustAttendance($attendances);
 

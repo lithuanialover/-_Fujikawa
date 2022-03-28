@@ -35,8 +35,8 @@
   <main>
     <div class="content">
       <br>
-      @foreach ($adjustAttendances as $fixed_date)
-        <p class="date">{{ $date }}</p>
+      @foreach ($adjustAttendances as $attendance)
+        <p class="date">date{{ $adjustAttendances->$date }}</p>
       @endforeach
       <div class="date_lists">
             <table>
@@ -47,7 +47,7 @@
                     <th>休憩時間</th>
                     <th>勤務時間</th>
                 </tr>
-                @foreach ($adjustAttendances as $index => $attendance)
+                @foreach ($adjustAttendances as $attendances)
                 <tr class="lists_content">
                     <td>{{$attendances->name}}</td>
                     <td>{{$attendances->start_time}}</td>
@@ -58,9 +58,11 @@
                 @endforeach
             </table>
 
-            <div class="pagenation">
+            <div class="pagination">
                 {{ $adjustAttendances->links() }}
             </div>
+
+            
       </div>
     </div>
   </main>
