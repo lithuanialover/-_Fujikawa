@@ -17,20 +17,6 @@ body {
           flex-direction: column;
 }
 
-body {
-  padding-top: 100px;
-  /*mainがheaderと重なる部分を解消する*/
-  padding-bottom: 50px;
-  /*mainがfooterと重なる部分を解消する*/
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  /**/
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  /*コンテンツ領域が画面の高さに満たない場合もフッタを最下部に固定する方法*/
-}
-
 header {
   position: fixed;
   /* ヘッダーを固定する */
@@ -41,21 +27,48 @@ header {
   /* 左から配置の基準位置を決める */
   width: 100%;
   /* ヘッダーの横幅を指定する */
-  height: 100px;
+  height: 50px;
   /* ヘッダーの高さを指定する */
   padding: 30px 60px;
   /* ヘッダーの余白を指定する(上下左右) */
   background-color: #ffffff;
   /* ヘッダーの背景色を指定する */
-  color: #000000;
+  color: #010111;
   /* フォントの色を指定する */
   vertical-align: middle;
   /*会社のロゴとバーナーの高さを合わせる*/
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  float: left;
+}
+
+header .nav {
+  float: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header a {
+  text-decoration: none;
+  color: #010111;
+}
+
+header .float {
+  display: inline-block;
+  margin-top: 25px;
+  margin-right: 100px;
+  float: right;
+}
+
+header .header-nav-item {
+  display: inline-block;
+  list-style: none;
+  margin-right: 40px;
+  padding: 10px;
+  color: #010111;
 }
 
 header .logo {
+  text-align: left;
   font-family: open-sans,sans-serif;
   /*Open Sans Regular */
   font-weight: 505;
@@ -64,7 +77,27 @@ header .logo {
   color: #010111;
 }
 
-main {
+.container {
+  width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding: 0px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  /**/
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  /*コンテンツ領域が画面の高さに満たない場合もフッタを最下部に固定する方法*/
+}
+
+.container .main {
+  padding-top: 100px;
+  /*mainがheaderと重なる部分を解消する*/
+  padding-bottom: 50px;
+  /*mainがfooterと重なる部分を解消する*/
+  left: 0;
+  /* 左から配置の基準位置を決める */
   background-color: #f2f2f2;
   /* mainの背景色を指定する */
   width: 100%;
@@ -72,7 +105,9 @@ main {
   /*高さ調整必須*/
 }
 
-footer {
+.footer {
+  left: 0;
+  /* 左から配置の基準位置を決める */
   position: fixed;
   bottom: 0;
   width: 100%;

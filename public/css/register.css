@@ -1,5 +1,5 @@
 @charset "UTF-8";
-main {
+.main {
   width: 100%;
 }
 
@@ -15,6 +15,11 @@ main {
   font-weight: bold;
   font-size: 24px;
   padding-bottom: 10px;
+}
+
+.card_form .form {
+  margin: 0;
+  text-align: center;
 }
 
 .card_form .form-control {

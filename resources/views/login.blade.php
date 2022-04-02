@@ -1,68 +1,41 @@
-<!DOCTYPE html>
-<html lang="ja">
+@extends('layouts.app')
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>勤怠管理</title>
-
-  <!--CSS-->
-  <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-  <!--ログインページのcss-->
-  <link rel="stylesheet" href="{{ asset('css/template.css') }}">
-  <!--header/body/footerのcss-->
-
-  <!--Font-->
-  <link rel="stylesheet" href="https://use.typekit.net/ght7zzs.css">
-  <!--ロゴ-->
-</head>
-
-<body>
-  <div id="wrap">
-    <header id="header">
-      <div class="inner">
-        <p class="logo">Atte</p>
-      </div>
-    </header>
-
-    <main>
-      <article class="card_form">
-        <p class="title-login">ログイン</p>
-        <!--会員情報入力部分-->
-        <section class="form">
-          <form method="POST">
-            @csrf
-            <!--メールアドレス-->
-            <div class="md-form">
-              <input class="form-control" type="text" id="email" name="email" required value="{{ old('email') }}" placeholder="メールアドレス">
-            </div>
-
-            <!--パスワード-->
-            <div class="md-form">
-              <input class="form-control" type="text" id="password" name="password" required value="{{ old('password') }}" placeholder="パスワード">
-            </div>
-
-            <!--ログインボタン-->
-            <div class="md-form">
-              <button class="btn-login" type="submit">ログイン</button>
-            </div>
-          </form>
-        </section>
-
+@section('main')
+@if (session('result'))
+<div class="flash_message">
+  {{ session('result') }}
+</div>
+@endif
+<article class="card_form">
+  <p class="title-login">ログイン</p>
+    <!--会員情報入力部分-->
+    <section class="form">
+      <form method="POST">
+      @csrf
+        <!--メールアドレス-->
+        <div class="md-form">
+          <input class="form-control" type="text" id="email" name="email" required value="{{ old('email') }}" placeholder="メールアドレス">
+          @error('email')
+            <p>{{ $message }}</p>
+          @enderror
+        </div>
+        <!--パスワード-->
+        <div class="md-form">
+          <input class="form-control" type="text" id="password" name="password" required value="{{ old('password') }}" placeholder="パスワード">
+          @error('password')
+            <p>{{ $message }}</p>
+          @enderror
+        </div>
         <!--ログインボタン-->
-        <section class="title-register">
-          <p class="msg-register">アカウントをお持ちでない方はこちらから</p>
-          <a href="/register" class="link_register">会員登録</a>
-        </section>
-      </article>
-    </main>
-
-    <footer>
-      Atte, inc.
-    </footer>
-  </div>
-</body>
-
-</html>
+        <div class="md-form">
+          <button class="btn-login" type="submit">ログイン</button>
+        </div>
+      </form>
+    </section>
+    <!--ログインボタン-->
+    <section class="title-register">
+      <p class="msg-register">アカウントをお持ちでない方はこちらから</p>
+      <a href="/register" class="link_register">会員登録</a>
+    </section>
+</article>
+@endsection

@@ -1,4 +1,4 @@
-main{
+.main{
   width:100% /*左右中央寄せ*/
 }
 
@@ -11,6 +11,11 @@ main{
     font-weight: bold;
     font-size: 24px;
     padding-bottom: 10px;
+  }
+
+  .form{
+    margin: 0;
+    text-align: center;
   }
 
   .form-control{
