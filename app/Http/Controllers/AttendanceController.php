@@ -8,6 +8,8 @@ use App\Models\Attendance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Pagination\Paginator; 
+
 use Carbon\Carbon;
 
 class AttendanceController extends Controller
@@ -15,9 +17,6 @@ class AttendanceController extends Controller
 
     public function getIndex()
     {
-        $is_attendance_start= true;
-        $is_attendance_end = true;
-        $is_rest = true;
 
         $attendance = Attendance::getAttendance();
 
