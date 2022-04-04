@@ -1,0 +1,39 @@
+
+
+/*header{
+
+
+  .logo{
+    float: left;
+  }
+
+  li{
+    font-weight: bold;
+  }
+
+  ul{
+    list-style: none;
+  }
+
+  .header_flex{
+    padding: 20px 30px;
+  }
+
+  .header_flex{
+    display: flex;
+    align-items: center;
+  }
+
+  .header_flex nav{
+    margin-right: 0;
+  }
+
+  .header_flex ul{
+    display: flex;
+  }
+
+  .header_flex ul li{
+    margin-left: 20px;
+  }
+}
+*/

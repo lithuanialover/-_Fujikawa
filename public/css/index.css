@@ -1,9 +1,4 @@
 @charset "UTF-8";
-main .content {
-  padding-left: 200px;
-  padding-right: 200px;
-}
-
 main .content .user_name {
   text-align: center;
   padding-top: 50px;
@@ -12,7 +7,7 @@ main .content .user_name {
   font-weight: bold;
 }
 
-main .content .content_title {
+main .content .flash_message {
   text-align: center;
   background-color: #E4B7BA;
   color: #010111;

@@ -2,7 +2,6 @@
 
 @section('main')
   <div class="content">
-    <br>
     <ul class="date-container">
       <li class="date-list"><a class="arrow" href="{!! '/attendance/' . ($num - 1) !!}">&lt;</a></li>
       <li class="date-list date">{{ $fixed_date }}</li>
@@ -27,10 +26,7 @@
         </tr>
       @endforeach
       </table>
-      <br>
-      <div class="d-flex justify-content-center">
-          {{ $adjustAttendances->links() }}
-      </div>
+      {{ $adjustAttendances->links() }}
     </div>
   </div>
 @endsection
